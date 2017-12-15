@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Laravel Comments Formatter</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        Laravel Comments Formatter
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><input type="text" style="width:600px" id="cmt_title" placeholder="Enter comment title" /></div>
+                        <div class="panel-body">
+                            <textarea id="cmt_body" style="width:600px;height:120px" placeholder="Enter comment body" onkeyup="update()">
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body" id="result">
+                            <pre>
+/*
+|--------------------------------------------------------------------------
+| Register Controller
+|--------------------------------------------------------------------------
+|
+| This controller handles the registration of new users as well as their
+| validation and creation. By default this controller uses a trait to
+| provide this functionality without requiring any additional code.
+|
+*/
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    function update()
+    {
+        var msg = document.getElementById('cmt_body').value;
+        var str = msg;
+        var avg = str.length / 3;
+        var words = str.split(' ');
+
+        var lines = [];
+        lines[0] = [];
+        lines[1] = [];
+        lines[2] = [];
+
+        var needed_length = avg;
+        var word, current_length;
+        var idx = 0;
+
+        for (i in words) {
+            word = words[i];
+            current_length = lines[idx].join(' ').length;
+            console.log("current length = " + current_length + " and needed length = " + needed_length);
+            
+            if (lines[idx].join(' ').length >= needed_length && idx < 2) {
+                idx++;
+                needed_length = current_length - 3;
+
+            }
+            lines[idx].push(word);
+
+        }
+
+        lines[0] = lines[0].join(' ');
+        lines[1] = lines[1].join(' ');
+        lines[2] = lines[2].join(' ');
+
+        var prefix = '<span style="color:red">';
+        if (lines[1].length - lines[2].length == 2) {
+            prefix = '<span style="color:green">';
+        }
+        document.getElementById('result').innerHTML = "<pre>" + prefix + lines[0] + "\n" + lines[1] + "\n" + lines[2] + "</span></pre>";
+    }
+</script>
+</body>
+</html>
