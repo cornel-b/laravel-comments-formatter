@@ -1,6 +1,6 @@
 function update()
 {
-    var str = document.getElementById('cmt_body').value;
+    var str = document.getElementById("comment").value;
     var avg = str.length / 3;
     var words = str.split(' ');
 
@@ -16,14 +16,11 @@ function update()
     for (i in words) {
         word = words[i];
         current_length = lines[idx].join(' ').length;
-        
         if (lines[idx].join(' ').length >= needed_length && idx < 2) {
             idx++;
             needed_length = current_length - 3;
-
         }
         lines[idx].push(word);
-
     }
 
     lines[0] = lines[0].join(' ');

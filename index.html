@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laravel Comments Formatter</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
     <link href="style.css" rel="stylesheet">
     <script src="script.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
@@ -17,7 +17,7 @@
         <div class="container">
             <div class="card margin20">
                 <div class="card-body">
-                    <textarea class="form-control" id="cmt_body" style="width:80%;height:120px" onkeyup="update()" placeholder="Enter comment"></textarea>
+                    <textarea class="form-control" id="comment" onkeyup="update()" placeholder="Enter comment"></textarea>
                 </div>
             </div>
             <div class="card margin24">

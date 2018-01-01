@@ -1,3 +1,4 @@
 .validation_success { color: green }
 .validation_error { color: red }
 .margin24 { margin-top: 24px }
+#comment { width:90%; height:120px }
