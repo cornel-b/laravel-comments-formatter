@@ -6,35 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laravel Comments Formatter</title>
     <link href="style.css" rel="stylesheet">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        Laravel Comments Formatter
-                    </a>
-                </div>
-            </div>
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">Laravel Comments Formatter</a>
         </nav>
         <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><input type="text" style="width:600px" id="cmt_title" placeholder="Enter comment title" /></div>
-                        <div class="panel-body">
-                            <textarea id="cmt_body" style="width:600px;height:120px" placeholder="Enter comment body" onkeyup="update()">
-                            </textarea>
-                        </div>
-                    </div>
+            <div class="card margin20">
+                <div class="card-body">
+                    <textarea class="form-control" id="cmt_body" style="width:80%;height:120px" onkeyup="update()" placeholder="Enter comment"></textarea>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="panel panel-default">
-                        <div class="panel-body" id="result">
-                            <pre>
+            <div class="card margin24">
+                <div class="card-body">
+                    <div class="panel-body" id="result">
+                        <pre>
 /*
 |--------------------------------------------------------------------------
 | Register Controller
@@ -46,54 +35,15 @@
 |
 */
                         </pre>
-                        </div>
                     </div>
                 </div>
             </div>
+            <div class="card margin24">
+                <div class="card-body">
+                    <div id="comment_stats"></div>
+                </div>
+            </div>            
         </div>
     </div>
-
-<script>
-    function update()
-    {
-        var msg = document.getElementById('cmt_body').value;
-        var str = msg;
-        var avg = str.length / 3;
-        var words = str.split(' ');
-
-        var lines = [];
-        lines[0] = [];
-        lines[1] = [];
-        lines[2] = [];
-
-        var needed_length = avg;
-        var word, current_length;
-        var idx = 0;
-
-        for (i in words) {
-            word = words[i];
-            current_length = lines[idx].join(' ').length;
-            console.log("current length = " + current_length + " and needed length = " + needed_length);
-            
-            if (lines[idx].join(' ').length >= needed_length && idx < 2) {
-                idx++;
-                needed_length = current_length - 3;
-
-            }
-            lines[idx].push(word);
-
-        }
-
-        lines[0] = lines[0].join(' ');
-        lines[1] = lines[1].join(' ');
-        lines[2] = lines[2].join(' ');
-
-        var prefix = '<span style="color:red">';
-        if (lines[1].length - lines[2].length == 2) {
-            prefix = '<span style="color:green">';
-        }
-        document.getElementById('result').innerHTML = "<pre>" + prefix + lines[0] + "\n" + lines[1] + "\n" + lines[2] + "</span></pre>";
-    }
-</script>
 </body>
 </html>
